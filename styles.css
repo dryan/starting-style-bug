@@ -31,6 +31,10 @@
   border-radius: var(--size-4px);
   padding: var(--size-16px);
   line-height: 1;
+
+  @starting-style {
+    animation-name: db-pop-in;
+  }
 }
 
 @keyframes demo-pop-in {
