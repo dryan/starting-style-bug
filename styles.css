@@ -31,10 +31,20 @@
   border-radius: var(--size-4px);
   padding: var(--size-16px);
   line-height: 1;
+  background-color: white;
 
   @starting-style {
-    animation-name: db-pop-in;
+    animation-name: demo-pop-in;
   }
+}
+
+.toaster {
+  display: grid;
+  gap: var(--size-16px);
+  position: fixed;
+  inset-block-end: var(--size-16px);
+  inset-inline-start: 50%;
+  translate: -50% 0;
 }
 
 @keyframes demo-pop-in {

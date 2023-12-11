@@ -9,8 +9,21 @@
   <body>
     <h1>Demo of <code>@starting-style</code> bug</h1>
 
-    <div class="toast" role="alert">
-      <p>Example toast</p>
-    </div>
+    <p>
+      <button type="button" id="add-toast">Add toast</button>
+    </p>
+
+    <div class="toaster"></div>
+
+    <script>
+      ((button, toaster) => {
+        button.addEventListener("click", () => {
+          const toast = document.createElement("div");
+          toast.classList.add("toast");
+          toast.textContent = "Example toast";
+          toaster.prepend(toast);
+        });
+      })(document.querySelector("#add-toast"), document.querySelector(".toaster"));
+    </script>
   </body>
 </html>
