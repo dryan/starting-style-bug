@@ -1,10 +1,59 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8" />
     <title>Demo of @starting-style bug</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="view-transition" content="same-origin" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link rel="preload" as="style" href="./fonts/ibm-plex-sans-variable.css" />
+    <link rel="preload" as="style" href="./fonts/inter-variable.css" />
+    <link rel="preload" as="style" href="./styles.css" />
+    <link rel="stylesheet" href="./fonts/ibm-plex-sans-variable.css" />
+    <link rel="stylesheet" href="./fonts/inter-variable.css" />
     <link rel="stylesheet" href="./styles.css" />
+    <meta name="theme-color" content="#f04a00" />
+    <link rel="icon" href="https://dryan.com/favicon.svg" type="image/svg" />
+    <script>
+      (() => {
+        const scripts = {
+          "cq-polyfill":
+            "https://cdn.jsdelivr.net/npm/container-query-polyfill@1/dist/container-query-polyfill.modern.js",
+        };
+        const styles = {};
+        const loadScript = (id) => {
+          if (scripts[id] === true) return;
+          const url = scripts[id];
+          const script = document.createElement("script");
+          script.setAttribute("src", url);
+          script.setAttribute("id", `loaded-script-${id}`);
+          document.head.append(script);
+          scripts[id] = true;
+          if (styles[id]) {
+            const style = document.createElement("link");
+            style.setAttribute("rel", "stylesheet");
+            style.setAttribute("href", styles[id]);
+            style.setAttribute("id", `loaded-style-${id}`);
+            document.head.append(style);
+          }
+          return script;
+        };
+        window.agdirect = window.agdirect || {};
+        window.agdirect.loadScript = loadScript;
+
+        // polyfill for container queries
+        let containersSupported = true;
+        try {
+          containersSupported = CSS.supports("container-type: inline-size");
+        } catch (err) {
+          containersSupported = false;
+        }
+        if (!containersSupported) {
+          loadScript("cq-polyfill");
+        }
+      })();
+    </script>
   </head>
   <body>
     <h1>Demo of <code>@starting-style</code> bug</h1>

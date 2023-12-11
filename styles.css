@@ -20,6 +20,14 @@
   }
 }
 
+html {
+  font-family: var(--font-inter), sans-serif;
+}
+
+h1 {
+  font-family: var(--font-ibm-plex-sans), var(--font-inter), sans-serif;
+}
+
 .toast {
   animation-duration: var(--animation-duration);
   animation-timing-function: var(--animation-curve-smooth);
