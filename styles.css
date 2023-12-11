@@ -1,0 +1,56 @@
+:root,
+::backdrop {
+  --size-2px: 0.125rem;
+  --size-4px: 0.25rem;
+  --size-8px: 0.5rem;
+  --size-12px: 0.75rem;
+  --size-16px: 1rem;
+}
+
+:root,
+::backdrop {
+  --animation-duration: 200ms;
+  --animation-curve-smooth: cubic-bezier(0.62, 0.16, 0.13, 1.01);
+}
+
+@media (prefers-reduced-motion: reduce), (update: slow) {
+  :root,
+  ::backdrop {
+    --animation-duration: 0ms; /* keep the ms so calc still works */
+  }
+}
+
+.toast {
+  animation-duration: var(--animation-duration);
+  animation-timing-function: var(--animation-curve-smooth);
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 0 var(--size-8px);
+  box-shadow: 0px var(--size-4px) var(--size-12px) 0px hsl(0deg 0% 10% / 10%);
+  border-radius: var(--size-4px);
+  padding: var(--size-16px);
+  line-height: 1;
+}
+
+@keyframes demo-pop-in {
+  from {
+    scale: 0.8;
+    opacity: 0;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+@keyframes demo-pop-out {
+  from {
+    scale: 1;
+    opacity: 1;
+  }
+  to {
+    scale: 0.8;
+    opacity: 0;
+  }
+}
